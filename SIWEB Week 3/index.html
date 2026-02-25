@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter Klik Sederhana</title>
+    <style>
+        body {
+            font-family: serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="clickCounter()" type="button">Click me!</button>
+
+    <p>Click the button to see the counter increase.</p>
+    <p>Close the browser tab (or window), and try again, and the counter is reset.</p>
+
+    <div id="result"></div>
+
+    <script>
+        function clickCounter() {
+            if (typeof(Storage) !== "undefined") {
+                if (sessionStorage.clickcount) {
+                    // Jika sudah ada, tambahkan 1
+                    sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+                } else {
+                    // Jika baru pertama kali di klik
+                    sessionStorage.clickcount = 1;
+                }
+                
+                
+                document.getElementById("result").innerHTML = 
+                    "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
+            } else {
+                document.getElementById("result").innerHTML = "Maaf, browser Anda tidak mendukung web storage...";
+            }
+        }
+    </script>
+
+</body>
+</html>

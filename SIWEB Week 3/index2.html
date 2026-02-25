@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Web Counter - Local Storage</title>
+    <style>
+        body {
+            font-family: serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        button {
+            padding: 4px 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        #display-text {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="clickBtn">Click me!</button>
+
+    <div id="display-text"></div>
+
+    <p>Click the button to see the counter increase.</p>
+    <p>Data ini akan tetap tersimpan meskipun tab atau browser ditutup (LocalStorage).</p>
+
+    <script>
+        const btn = document.getElementById('clickBtn');
+        const display = document.getElementById('display-text');
+
+        
+        function updateDisplay() {
+            const count = localStorage.getItem('myClickCount');
+            if (count) {
+                display.innerText = `You have clicked the button ${count} time(s).`;
+            } else {
+                display.innerText = ""; 
+            }
+        }
+
+        
+        updateDisplay();
+
+        btn.addEventListener('click', function() {
+            if (typeof(Storage) !== "undefined") {
+                
+                let currentCount = localStorage.getItem('myClickCount') || 0;
+                
+               
+                let newCount = parseInt(currentCount) + 1;
+                
+                
+                localStorage.setItem('myClickCount', newCount);
+                
+               
+                updateDisplay();
+            } else {
+                alert("Browser tidak mendukung Web Storage.");
+            }
+        });
+    </script>
+
+</body>
+</html>
