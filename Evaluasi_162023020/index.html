@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>162023020_Juanda_Evaluasi</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Custom Alert Modal -->
+    <div id="customAlert" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span class="globe-icon">&#x1F310;</span>
+                <span>file://</span>
+            </div>+
+            
+            <div class="modal-body">
+                <p id="alertMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="ok-btn" onclick="closeAlert()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Background Images Grid -->
+        <div class="background-grid">
+            <img src="assets/DepanItenas.jpeg" alt="ITENAS">
+            <img src="assets/DepanItenas.jpeg" alt="ITENAS">
+            <img src="assets/DepanItenas.jpeg" alt="ITENAS">
+            <img src="assets/DepanItenas.jpeg" alt="ITENAS">
+            <img src="assets/DepanItenas.jpeg" alt="ITENAS">
+            <img src="assets/DepanItenas.jpeg" alt="ITENAS">
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <a href="#" class="nav-link" onclick="showHome(); return false;">Home</a>
+                <a href="#" class="nav-link" onclick="showMenu(); return false;">Menu</a>
+                <a href="#" class="nav-link" onclick="showCalculator(); return false;">Calculator</a>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Home Section -->
+                <div id="home-section" class="section active">
+                    <span>klik button disamping >></span>
+                    <button class="shout-btn" onclick="shout()">Shout</button>
+                
+                </div>
+
+                <!-- Menu Section -->
+                <div id="menu-section" class="section">
+                    <div class="menu-wrapper">
+                        <table class="menu-table">
+                            <tr>
+                                <th>No</th>
+                                <th>Makanan/Minuman</th>
+                                <th>Harga</th>
+                                <th>Pesan</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Bakso Istimewa</td>
+                                <td>@ Rp 12000</td>
+                                <td><input type="number" id="bakso" value="0" min="0" onchange="hitungTotal()" oninput="hitungTotal()"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Soto Spesial</td>
+                                <td>@ Rp 10000</td>
+                                <td><input type="number" id="soto" value="0" min="0" onchange="hitungTotal()" oninput="hitungTotal()"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Mie Ayam Super</td>
+                                <td>@ Rp 15000</td>
+                                <td><input type="number" id="mieayam" value="0" min="0" onchange="hitungTotal()" oninput="hitungTotal()"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="label-right">Jumlah Total</td>
+                                <td><input type="text" id="jumlahTotal" value="0" readonly class="result-input"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="label-right">Diskon</td>
+                                <td><input type="text" id="diskon" value="0" readonly class="result-input"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="label-right">Jumlah Bayar</td>
+                                <td><input type="text" id="jumlahBayar" value="0" readonly class="result-input"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="reset-container">
+                        <button class="reset-btn" onclick="resetMenu()">Reset</button>
+                    </div>
+                </div>
+
+                <!-- Calculator Section -->
+                <div id="calculator-section" class="section">
+                    <div class="calculator">
+                        <input type="number" id="angka1">
+                        <select id="operator">
+                            <option value="*">*</option>
+                            <option value="/">/</option>
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="^">^</option>
+                        </select>
+                        <input type="number" id="angka2">
+                        <span class="equals">=</span>
+                        <input type="text" id="hasil" readonly>
+                    </div>
+                    <div class="calc-buttons">
+                        <button class="hitung-btn" onclick="hitung()">Hitung</button>
+                        <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div>280224</div>
+            <div>Sistem Informasi | ITENAS 2024</div>
+        </div>
+    </div>
+
+    <script>
+        // Custom Alert Function
+        function showAlert(message) {
+            document.getElementById('alertMessage').textContent = message;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        // Show Home
+        function showHome() {
+            document.getElementById('home-section').classList.add('active');
+            document.getElementById('menu-section').classList.remove('active');
+            document.getElementById('calculator-section').classList.remove('active');
+        }
+
+        function showMenu() {
+            showAlert('Input Jumlah Pesanan agar di hitung otomatis oleh sistem');
+            document.getElementById('home-section').classList.remove('active');
+            document.getElementById('menu-section').classList.add('active');
+            document.getElementById('calculator-section').classList.remove('active');
+        }
+
+        function showCalculator() {
+            document.getElementById('home-section').classList.remove('active');
+            document.getElementById('menu-section').classList.remove('active');
+            document.getElementById('calculator-section').classList.add('active');
+        }
+
+        function shout() {
+            showAlert('Hai, Selamat datang di Sistem Sederhana');
+        }
+
+        function hitungTotal() {
+            let bakso = parseInt(document.getElementById('bakso').value) || 0;
+            let soto = parseInt(document.getElementById('soto').value) || 0;
+            let mieayam = parseInt(document.getElementById('mieayam').value) || 0;
+
+            let totalBakso = bakso * 12000;
+            let totalSoto = soto * 10000;
+            let totalMieayam = mieayam * 15000;
+
+            let jumlahTotal = totalBakso + totalSoto + totalMieayam;
+            let diskon = 0;
+
+            if (jumlahTotal > 50000) {
+                diskon = jumlahTotal * 0.1;
+            }
+
+            let jumlahBayar = jumlahTotal - diskon;
+
+            document.getElementById('jumlahTotal').value = jumlahTotal;
+            document.getElementById('diskon').value = diskon;
+            document.getElementById('jumlahBayar').value = jumlahBayar;
+        }
+
+        function resetMenu() {
+            document.getElementById('bakso').value = 0;
+            document.getElementById('soto').value = 0;
+            document.getElementById('mieayam').value = 0;
+            document.getElementById('jumlahTotal').value = 0;
+            document.getElementById('diskon').value = 0;
+            document.getElementById('jumlahBayar').value = 0;
+        }
+
+        function hitung() {
+            let angka1 = document.getElementById('angka1').value;
+            let angka2 = document.getElementById('angka2').value;
+            let operator = document.getElementById('operator').value;
+
+            if (angka1 === '' || angka2 === '') {
+                showAlert('inputan pertama dan kedua harus lebih dari 0');
+                return;
+            }
+
+            angka1 = parseFloat(angka1);
+            angka2 = parseFloat(angka2);
+            let hasil = 0;
+
+            switch (operator) {
+                case '+':
+                    hasil = angka1 + angka2;
+                    break;
+                case '-':
+                    hasil = angka1 - angka2;
+                    break;
+                case '*':
+                    hasil = angka1 * angka2;
+                    break;
+                case '/':
+                    hasil = angka1 / angka2;
+                    break;
+                case '^':
+                    hasil = Math.pow(angka1, angka2);
+                    break;
+            }
+
+            document.getElementById('hasil').value = hasil;
+        }
+
+        function resetCalculator() {
+            document.getElementById('angka1').value = '';
+            document.getElementById('angka2').value = '';
+            document.getElementById('hasil').value = '';
+        }
+    </script>
+</body>
+</html>
