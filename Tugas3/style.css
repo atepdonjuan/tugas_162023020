@@ -1,0 +1,257 @@
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* ===== Container ===== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ===== Judul ===== */
+.judul {
+    font-size: 28px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 12px;
+}
+
+/* ===== Fieldset ===== */
+fieldset {
+    border: 1px solid #aaa;
+    padding: 12px 16px 16px;
+    margin-bottom: 12px;
+    border-radius: 2px;
+}
+
+legend {
+    font-size: 14px;
+    padding: 0 6px;
+    font-style: italic;
+}
+
+ol {
+    padding-left: 24px;
+}
+
+ol li {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-style: italic;
+}
+
+/* ===== Kotak Warna Kecil ===== */
+.color-box {
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: border-color 0.2s;
+}
+
+.color-box:hover {
+    border-color: #fff;
+    outline: 1px solid #555;
+}
+
+/* ===== Tombol Simpan ===== */
+.btn-simpan {
+    background-color: #e0e0e0;
+    border: 1px solid #999;
+    padding: 4px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.btn-simpan:hover {
+    background-color: #cacaca;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+/* ===== Modal Box ===== */
+.modal-box {
+    background: #3a3a3a;
+    border-radius: 6px;
+    width: 320px;
+    padding: 0 0 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* ===== Modal Header ===== */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: #2e2e2e;
+    margin-bottom: 10px;
+}
+
+.modal-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-cancel {
+    background: #555;
+    color: #fff;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-cancel:hover {
+    background: #666;
+}
+
+.btn-select {
+    background: #3a8f3a;
+    color: #fff;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-select:hover {
+    background: #2d7a2d;
+}
+
+/* ===== Grid Warna ===== */
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    padding: 0 10px;
+    margin-bottom: 8px;
+}
+
+.swatch {
+    width: 30px;
+    height: 28px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+    transition: transform 0.1s;
+}
+
+.swatch:hover {
+    transform: scale(1.12);
+    border-color: #fff;
+}
+
+.swatch.selected::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 3px #000;
+}
+
+/* ===== Custom Section ===== */
+.custom-section {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px 0;
+}
+
+.custom-label {
+    color: #ccc;
+    font-size: 12px;
+    min-width: 44px;
+}
+
+.btn-plus {
+    width: 28px;
+    height: 28px;
+    background: #555;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-plus:hover {
+    background: #666;
+}
+
+.custom-swatches {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.custom-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.custom-swatch:hover {
+    border-color: #fff;
+}
+
+.custom-swatch.selected::after {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 0 3px #000;
+    width: 100%;
+    height: 100%;
+}
